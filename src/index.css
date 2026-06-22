@@ -1,0 +1,126 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --green:   #1F7A63;
+    --green2:  #2ECC71;
+    --accent:  #A3E4D7;
+    --bg:      #F8F9F9;
+    --text:    #1C1C1C;
+    --muted:   #6b7c79;
+    --border:  #e2e8e6;
+    --card:    #ffffff;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  h1, h2, h3, h4, h5 {
+    font-family: 'Playfair Display', serif;
+  }
+}
+
+@layer components {
+  /* ---- Buttons ---- */
+  .btn-primary {
+    @apply bg-primary text-white font-semibold px-7 py-3 rounded-xl
+           transition-all duration-200 hover:bg-primary-dark
+           hover:-translate-y-0.5 hover:shadow-green active:scale-95;
+    font-family: 'DM Sans', sans-serif;
+  }
+  .btn-outline {
+    @apply border-2 border-primary text-primary font-semibold px-7 py-3 rounded-xl
+           transition-all duration-200 hover:bg-primary hover:text-white active:scale-95;
+    font-family: 'DM Sans', sans-serif;
+  }
+  .btn-ghost {
+    @apply text-primary font-semibold transition-all duration-200
+           hover:text-primary-dark underline-offset-2 hover:underline;
+    font-family: 'DM Sans', sans-serif;
+  }
+
+  /* ---- Cards ---- */
+  .card {
+    @apply bg-card border border-[var(--border)] rounded-2xl shadow-card;
+  }
+  .card-hover {
+    @apply transition-all duration-300 hover:-translate-y-1.5 hover:shadow-green hover:border-accent;
+  }
+
+  /* ---- Section helpers ---- */
+  .section-label {
+    @apply text-primary text-xs font-bold tracking-widest uppercase mb-2;
+  }
+  .section-title {
+    @apply font-display text-3xl md:text-4xl leading-snug mb-3;
+  }
+  .section-sub {
+    @apply text-muted text-base leading-relaxed max-w-xl mb-10;
+  }
+
+  /* ---- Form elements ---- */
+  .form-input {
+    @apply w-full px-4 py-2.5 border border-[var(--border)] rounded-xl
+           text-sm font-body bg-white text-[var(--text)] outline-none
+           transition-all duration-200
+           focus:border-primary focus:ring-2 focus:ring-primary/10;
+    font-family: 'DM Sans', sans-serif;
+  }
+  .form-label {
+    @apply block text-sm font-semibold text-[var(--text)] mb-1.5;
+  }
+
+  /* ---- Badge ---- */
+  .badge {
+    @apply inline-flex items-center gap-1.5 bg-primary/10 text-primary
+           text-xs font-bold px-3 py-1 rounded-full;
+  }
+  .badge-green {
+    @apply bg-secondary/15 text-secondary-dark;
+  }
+  .badge-amber {
+    @apply bg-amber-100 text-amber-700;
+  }
+
+  /* ---- 3D Canvas wrapper ---- */
+  .canvas-wrapper {
+    @apply rounded-2xl overflow-hidden relative;
+    background: linear-gradient(135deg, #e8f5f0 0%, #d0ebe2 100%);
+  }
+}
+
+@layer utilities {
+  .bg-card { background-color: var(--card); }
+  .shadow-card { box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1), 0 2px 4px -1px rgba(0,0,0,0.06); }
+}
+
+
+/* ---- Scrollbar ---- */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: var(--bg); }
+::-webkit-scrollbar-thumb { background: var(--accent); border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: var(--green); }
+
+/* ---- Page transition ---- */
+.page-enter { animation: fadeUp 0.45s ease forwards; }
+
+/* ---- Noise texture overlay ---- */
+.noise::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+  pointer-events: none;
+  border-radius: inherit;
+}
