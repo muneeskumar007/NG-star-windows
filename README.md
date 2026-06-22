@@ -1,4 +1,4 @@
-# ClearView™ uPVC Windows & Doors Website
+# NG star windows uPVC Windows & Doors Website
 
 A production-ready React website for a premium uPVC windows and doors business with advanced 3D visualization, animation, and lead generation features.
 
